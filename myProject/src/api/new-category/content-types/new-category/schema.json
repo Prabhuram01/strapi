@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "new_categories",
+  "info": {
+    "singularName": "new-category",
+    "pluralName": "new-categories",
+    "displayName": "NewCategory",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true,
+    "populateCreatorFields":true
+
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    }
+  }
+}
