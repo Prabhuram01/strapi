@@ -9,10 +9,6 @@ import {
     MultiSelect,
     MultiSelectOption,
     MultiSelectNested,
-    /**
-     * These imports are still valid, but will be removed in the
-     * next major iteration
-     */
     Select,
     Option,
     OptGroup,
@@ -24,8 +20,8 @@ import auditLogsRequests from '../../api/auditlogs';
 
 const InputForm = () => {
     const [user, setUser] = useState();
-    const [startdate, setStartDate] = useState(format(new Date(), 'yyyy-LL-dd'));
-    const [enddate, setEndDate] = useState(format(new Date(), 'yyyy-LL-dd'));
+    const [startdate, setStartDate] = useState();
+    const [enddate, setEndDate] = useState();
     const [showResponseResult, setShowResponseResult] = useState(false)
     const [responseData, setresponseData] = useState([]);
     const [usersList, setUsersList] = useState([]);
@@ -96,7 +92,7 @@ const InputForm = () => {
                         </Flex>
                         <br />
                         <Flex direction="column" alignItems="stretch" gap={11}>
-                            <DatePicker required name="enddate" label="End Date" onChange={pickEndDate} value={enddate} onClear={() => setEndDate()} />
+                            <DatePicker required name="enddate" label="End Date" onChange={pickEndDate} value={enddate} onClear={() => setEndDate()} placeholder="DD/MM/YYYY" />
                         </Flex>
                         <br />
                         <Button variant='secondary' type="submit">Show Data</Button>
