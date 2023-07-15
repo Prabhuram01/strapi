@@ -1,0 +1,83 @@
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { Combobox, ComboboxOption } from '@strapi/design-system/Combobox';
+import { Stack } from '@strapi/design-system/Stack';
+import { Field, FieldLabel, FieldError, FieldHint } from '@strapi/design-system/Field';
+import restaurantRequests from '../../api/restaurant';
+import { MultiSelect, MultiSelectOption } from '@strapi/design-system';
+
+const RestaurantForm = ({ value,
+    onChange,
+    name,
+    labelAction,
+    required,
+    attribute,
+    description,
+    placeholder,
+    disabled }) => {
+    const [categoriesList, setCategoriesList] = useState([]);
+
+    const fetchCategories = async () => {
+        const allcategories = await restaurantRequests.getAllCategories();
+        setCategoriesList(allcategories);
+    };
+
+    useEffect(async () => {
+        await fetchCategories();
+    }, []);
+
+    const [category, setCategory] = useState();
+    const [subcategory, setSubcategory] = useState([]);
+
+    let mappedResults;
+
+    return (
+        <Field
+            name={name}
+            id={name}
+            required={required}
+            hint={description}
+        >
+            <Stack spacing={1}>
+                <FieldLabel action={labelAction}>
+                    Category
+                </FieldLabel>
+                <Combobox
+                    placeholder="Select a Category"
+                    aria-disabled={disabled}
+                    disabled={disabled}
+                    value={value}
+                    onChange={setCategory}
+                // onClear={() => { setCategory(undefined); }}
+
+                >
+                    {categoriesList.map((category) => (
+                        <ComboboxOption value={category.id} key={category.id}>{category.Name}</ComboboxOption>
+                    ))}
+                </Combobox>
+
+                <MultiSelect name="subcategory" label="Sub-categories" value={value} onChange={subcat => onChange({ target: { name, value: subcat.Name, type: attribute.type } })} withTags>
+                    {
+                        mappedResults = categoriesList.map(cat => {
+                            console.log(cat.id)
+                            console.log(cat.name)
+                            console.log(category)
+                            if (cat.id == category) {
+                                return cat.sub_categories.map(subcat => {
+                                    { console.log(subcat) }
+                                    return <MultiSelectOption key={subcat.id} value={subcat.id}>{subcat.Name}</MultiSelectOption>;
+                                });
+                            } else {
+                                return null;
+                            }
+                        })
+                    }
+                </MultiSelect>
+                <FieldHint />
+                <FieldError />
+            </Stack>
+        </Field>
+    )
+}
+
+export default RestaurantForm

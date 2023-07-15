@@ -1,6 +1,8 @@
 module.exports = {
-  'audit-logs': {
-    enabled: true,
-    resolve: './src/plugins/audit-logs'
-  }
-}
+    "strapi-indian-states": {
+        enabled: true,
+    },
+    "ckeditor": {
+        enabled: true,
+    },
+};

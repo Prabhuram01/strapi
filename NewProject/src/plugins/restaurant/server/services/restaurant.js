@@ -3,34 +3,35 @@
 module.exports = ({ strapi }) => ({
     async createRestaurant(ctx) {
         try {
-            console.log("Data is ");
-            console.log(ctx.request.body);
+            // console.log("Data is ");
+            // console.log(ctx.request.body);
 
             return await strapi.entityService.create("api::restaurant.restaurant", ctx.request.body);
         } catch (err) {
-            console.log("some error occured which is ");
-            console.log(err.message);
-            console.log("Complete error is");
-            console.log(err);
+            // console.log("some error occured which is ");
+            // console.log(err.message);
+            // console.log("Complete error is");
+            // console.log(err);
         }
     },
     async getCategories(ctx) {
         try {
-            console.log("In GetCategories Service");
-            console.log("ctx.query");
-            console.log(ctx.query);
-            console.log("");
+            // console.log("In GetCategories Service");
+            // console.log("ctx.query");
+            // console.log(ctx.query);
+            // console.log("");
 
-            return await strapi.entityService.findMany("api::category.category", {
+            const datafromcategories = await strapi.entityService.findMany("api::category.category", {
                 populate: { sub_categories: true },
             });
             // console.log(datafromcategories);
             // console.log(datafromcategories[0].sub_categories);
+            return datafromcategories
         } catch (err) {
-            console.log("some error occured which is ");
+            // console.log("some error occured which is ");
             console.log(err.message);
-            console.log("Complete error is");
-            console.log(err);
+            // console.log("Complete error is");
+            // console.log(err);
         }
     }
 });

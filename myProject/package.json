@@ -14,7 +14,9 @@
     "@strapi/plugin-i18n": "4.6.1",
     "@strapi/plugin-users-permissions": "4.6.1",
     "@strapi/strapi": "4.6.1",
-    "better-sqlite3": "8.0.1"
+    "better-sqlite3": "8.0.1",
+    "strapi-indian-states": "^0.1.0",
+    "strapi-tiptap-editor": "^0.9.12"
   },
   "author": {
     "name": "A Strapi developer"

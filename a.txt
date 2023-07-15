@@ -1,0 +1,79 @@
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { Combobox, ComboboxOption } from '@strapi/design-system/Combobox';
+import { Stack } from '@strapi/design-system/Stack';
+import { Field, FieldLabel, FieldError, FieldHint } from '@strapi/design-system/Field';
+import restaurantRequests from '../../api/restaurant';
+// const fs = require('fs');
+
+const RestaurantForm = ({ value,
+    onChange,
+    name,
+    labelAction,
+    required,
+    attribute,
+    description,
+    placeholder,
+    disabled,
+    error, }) => {
+    const [categoriesList, setCategoriesList] = useState([]);
+
+    const NewcategoriesList = ['abc', "asfd"]
+    const fetchCategories = async () => {
+        const allcategories = await restaurantRequests.getAllCategories();
+        setCategoriesList(allcategories);
+    };
+
+    useEffect(async () => {
+        await fetchCategories();
+    }, []);
+
+    const [category, setCategory] = useState();
+    const [subcategory, setSubcategory] = useState([]);
+
+    let mappedResults;
+    return (
+
+        // <Flex direction="column" alignItems="flex-start" gap={1}>
+        //     <SingleSelect label="Categories" required placeholder="Select a Category" name="category" onClear={() => {
+        //         setCategory(undefined);
+        //     }} value={category} onChange={category => onChange({ target: { name, value: category, type: attribute.type } })} >
+        //         {
+        //             NewcategoriesList.map(category => {
+        //                 return <SingleSelectOption value={category}>{category}</SingleSelectOption>
+        //             })
+        //         }
+        //     </SingleSelect>
+        // </Flex>
+        <Field
+            name={name}
+            id={name}
+            required={required}
+            hint={description}
+        >
+            <Stack spacing={1}>
+                <FieldLabel action={labelAction}>
+                    Category
+                </FieldLabel>
+
+                <Combobox
+                    placeholder={placeholder}
+                    // 
+                    aria-disabled={disabled}
+                    disabled={disabled}
+                    value={value}
+                    onChange={timezone => onChange({ target: { name, value: timezone, type: attribute.type } })}
+                >
+                    {NewcategoriesList.map((timezone) => (
+                        <ComboboxOption value={timezone} key={timezone}>{timezone}</ComboboxOption>
+                    ))}
+                </Combobox>
+
+                <FieldHint />
+                <FieldError />
+            </Stack>
+        </Field>
+    )
+}
+
+export default RestaurantForm

@@ -3,6 +3,7 @@ import pluginPkg from '../../package.json';
 import pluginId from './pluginId';
 import Initializer from './components/Initializer';
 import PluginIcon from './components/PluginIcon';
+import Restaurant from '@strapi/icons/Restaurant';
 
 const name = pluginPkg.strapi.name;
 
@@ -34,9 +35,32 @@ export default {
       isReady: false,
       name,
     });
+
+    app.customFields.register({
+      name: "restaurant",
+      pluginId: "restaurant", // the custom field is created by a color-picker plugin
+      type: "string", // the color will be stored as a string
+      intlLabel: {
+        id: "restaurant.dropdown.label",
+        defaultMessage: "new test field",
+      },
+      intlDescription: {
+        id: "restaurant.dropdown.description",
+        defaultMessage: "Relation between Category & SubCategory",
+      },
+      icon: Restaurant, // don't forget to create/import your icon component 
+      components: {
+        Input: async () => import(/* webpackChunkName: "input-component" */ "../src/components/RestaurantForm/RestaurantForm"),
+      },
+      options: {
+        // declare options here
+      },
+    });
+
   },
 
-  bootstrap(app) {},
+
+  bootstrap(app) { },
   async registerTrads({ locales }) {
     const importedTrads = await Promise.all(
       locales.map((locale) => {

@@ -73,7 +73,7 @@ const InputForm = () => {
                     <Box padding={8} background="neutral0" shadow="filterShadow" borderColor="neutral200">
                         <Flex justifyContent="flex-end">
                             {/* <Box padding={2}> */}
-                            <Button variant='primary' type="submit" startIcon={<Refresh />} onClick={handleRefreshUsers}>Refresh Users</Button>
+                            <Button variant='primary' type="submit" startIcon={<Refresh />} onClick={handleRefreshUsers}>Fetch Users</Button>
                             {/* </Box> */}
                         </Flex>
 

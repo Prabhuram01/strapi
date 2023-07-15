@@ -9,7 +9,7 @@
   },
   "options": {
     "draftAndPublish": true,
-    "populateCreatorFields":true
+    "populateCreatorFields": true
   },
   "pluginOptions": {},
   "attributes": {
@@ -30,6 +30,18 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "strapi_indian_states_state": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::strapi-indian-states.state",
+      "inversedBy": "restaurant_state"
+    },
+    "strapi_indian_states_district": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::strapi-indian-states.district",
+      "inversedBy": "restaurant_dist"
     }
   }
 }

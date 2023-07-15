@@ -1,19 +1,21 @@
-import React from 'react'
-import { Grid, GridItem, Typography } from '@strapi/design-system';
+import React from 'react';
 import { useState, useEffect } from 'react';
-import { Field, FieldLabel, FieldHint, FieldError, FieldInput, FieldAction, Flex } from '@strapi/design-system';
-import { Textarea, Tooltip } from '@strapi/design-system';
-import { Button } from '@strapi/design-system';
+import { Combobox, ComboboxOption } from '@strapi/design-system/Combobox';
+import { Stack } from '@strapi/design-system/Stack';
+import { Field, FieldLabel, FieldError, FieldHint } from '@strapi/design-system/Field';
 import restaurantRequests from '../../api/restaurant';
-import {
-    SingleSelect,
-    SingleSelectOption,
-    MultiSelect,
-    MultiSelectOption
-} from '@strapi/design-system';
-// const fs = require('fs');
+import { sharedVariable } from '../../../../../todo/admin/src/components/subCategory/subCategory';
+import { Box, Flex, MultiSelect, MultiSelectOption, SingleSelect, SingleSelectOption } from '@strapi/design-system';
 
-const RestaurantForm = () => {
+const RestaurantForm = ({ value,
+    onChange,
+    name,
+    labelAction,
+    required,
+    attribute,
+    description,
+    placeholder,
+    disabled }) => {
     const [categoriesList, setCategoriesList] = useState([]);
 
     const fetchCategories = async () => {
@@ -21,109 +23,66 @@ const RestaurantForm = () => {
         setCategoriesList(allcategories);
     };
 
+    const categoryNames = categoriesList.map(cat => cat.Name)
+
     useEffect(async () => {
         await fetchCategories();
     }, []);
 
     const [category, setCategory] = useState();
-    const [subcategory, setSubcategory] = useState([]);
+    const [subcategory, setSubcategory] = useState(value);
 
     let mappedResults;
 
-    async function handleSubmit(event) {
-        console.log("Entered handle bro")
-        event.preventDefault();
+    const onChangeHandler = (data) => {
+        console.log("inside onChangehandler")
+        console.log("data is", data)
+        console.log("value is", value)
+        console.log("value is", categoriesList)
 
-        // const imageFilePath = '"C:\Users\prabh\OneDrive\Pictures\acess.jpg"';
+        const mappedResults = categoriesList.reduce((accumulator, cat) => {
+            if (cat.Name == data) {
+                const subcatNames = cat.sub_categories.map(subcat => subcat.Name);
+                console.log(subcatNames)
+                return accumulator.concat(subcatNames);
+            } else {
+                return accumulator;
+            }
+        }, []);
 
-        // const formData = new FormData();
-        // formData.append('file', fs.createReadStream(imageFilePath));
+        sharedVariable.setValue(mappedResults);
+        console.log("mappedResults", mappedResults)
 
-        const data = {
-            name: String(event.target.restaurantName.value),
-            description: String(event.target.description.value),
-            r_category: {
-                id: category
-            },
-            r_sub_categories: {
-                connect: subcategory
-            },
-            // img: formData
-        };
-
-        const response = await restaurantRequests.addRestaurant(data);
-        if (!response.status === 200) {
-            alert("success");
-            // reset the form
-            event.target.restaurantName.value = "";
-            event.target.description.value = "";
-        } else {
-            alert("oops");
-        }
     }
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <Grid gap={{
-                    desktop: 5,
-                    tablet: 2,
-                    mobile: 1
-                }} >
-                    <GridItem background="neutral100" padding={1} col={12} s={12}>
-                        <Field name="email" required={true}>
-                            <Flex direction="column" alignItems="flex-start" gap={1}>
-                                <FieldLabel>Name</FieldLabel>
-                                <FieldInput type="text" placeholder="Taj Restaurant" name="restaurantName" required />
-                            </Flex>
-                        </Field>
-                    </GridItem>
-                    <GridItem background="neutral100" padding={1} col={12} s={12}>
-                        <Field name="text" required={true}>
-                            <Flex direction="column" alignItems="flex-start" gap={1}>
-                                <FieldLabel>Description</FieldLabel>
-                                <FieldInput type="text" placeholder="About Taj Restaurant" name="description" required />
-                            </Flex>
-                        </Field>
-                    </GridItem>
-                    <GridItem background="neutral100" padding={1} col={12} xs={12}>
-                        <Flex direction="column" alignItems="flex-start" gap={1}>
-                            <SingleSelect label="Categories" required placeholder="Select a Category" name="category" onClear={() => {
-                                setCategory(undefined);
-                            }} value={category} onChange={setCategory} >
-                                {
-                                    categoriesList.map(category => {
-                                        return <SingleSelectOption value={category.id}>{category.name}</SingleSelectOption>
-                                    })
-                                }
-                            </SingleSelect>
-                        </Flex>
-                    </GridItem>
-                    {category && <GridItem background="neutral100" padding={1} col={12} xs={12}>
-                        <MultiSelect name="subcategory" label="Subcategories" required onClear={() => {
-                            setSubcategory(undefined);
-                        }} value={subcategory} onChange={setSubcategory} withTags>
-                            {
-                                mappedResults = categoriesList.map(cat => {
-                                    if (cat.id == category) {
-                                        return cat.sub_categories.map(subcat => {
-                                            return <MultiSelectOption key={subcat.id} value={subcat.id}>{subcat.name}</MultiSelectOption>;
-                                        });
-                                    } else {
-                                        return null;
-                                    }
-                                })
-                            }
-                            {console.log(mappedResults)}
-                        </MultiSelect>
-                    </GridItem>}
-                    <GridItem background="neutral100" padding={1} col={12} xs={12}>
-                    </GridItem>
-                    <GridItem background="neutral100" padding={1} col={12} xs={12}>
-                        <Button type="submit">Submit</Button>
-                    </GridItem>
-                </Grid>
-            </form>
-        </>
+        <Field
+            name={name}
+            id={name}
+            required={required}
+            hint={description}
+        >
+            <Stack spacing={1}>
+
+                <FieldLabel action={labelAction}>
+                    Category
+                </FieldLabel>
+                <div onLoad={onChangeHandler(value)} >
+                    <SingleSelect
+                        placeholder="Select a Category"
+                        aria-disabled={disabled}
+                        disabled={disabled}
+                        value={value}
+                        onChange={(data) => { onChange({ target: { name, value: data, type: attribute.type } }); onChangeHandler(data); }}
+                    >
+                        {categoryNames.map((category) => (
+                            <SingleSelectOption value={category} key={category}>{category}</SingleSelectOption>
+                        ))}
+                    </SingleSelect>
+                </div>
+                <FieldHint />
+                <FieldError />
+            </Stack>
+        </Field>
     )
 }
 

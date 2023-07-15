@@ -20,15 +20,6 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "sub_categories"
-    },
-    "restaurants": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::restaurant.restaurant",
-      "inversedBy": "sub_categories"
-    },
-    "A": {
-      "type": "string"
     }
   }
 }

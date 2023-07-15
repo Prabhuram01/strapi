@@ -5,9 +5,12 @@ const restaurantRequests = {
         return await request(`/restaurant/create`, {
             method: "POST",
             body: { data: data },
+            Headers: {
+                'Content-Type': 'multipart/form-data',
+            }
         });
     },
-    getAllCategories:async () =>{
+    getAllCategories: async () => {
         return await request(`/restaurant/getcategories`, {
             method: "GET",
         });

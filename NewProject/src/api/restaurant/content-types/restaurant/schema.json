@@ -8,37 +8,25 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true,
-    "populateCreatorFields": true
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
     "Name": {
       "type": "string"
     },
-    "category": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
-    },
-    "sub_categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::sub-category.sub-category",
-      "mappedBy": "restaurants"
-    },
-    "Desc": {
-      "type": "richtext"
-    },
-    "img": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+    "a": {
+      "type": "customField",
+      "options": [
+        "asa",
+        "sad",
+        "sds"
       ],
-      "type": "media",
-      "multiple": false
+      "customField": "plugin::todo.subCategory"
+    },
+    "category": {
+      "type": "customField",
+      "customField": "plugin::restaurant.restaurant"
     }
   }
 }

@@ -14,7 +14,10 @@
     "@strapi/plugin-users-permissions": "4.10.6",
     "@strapi/strapi": "4.10.6",
     "better-sqlite3": "8.4.0",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "react-select": "^5.7.3",
+    "strapi-plugin-component-preview": "^1.0.9",
+    "strapi-tiptap-editor": "^0.9.12"
   },
   "author": {
     "name": "A Strapi developer"

@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "districts",
+  "info": {
+    "singularName": "district",
+    "pluralName": "districts",
+    "displayName": "district"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
+  },
+  "attributes": {
+    "state_id": {
+      "type": "integer",
+      "configurable": false
+    },
+    "district": {
+      "type": "string",
+      "configurable": false
+    },
+    "restaurant_dist": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::restaurant.restaurant",
+      "mappedBy": "strapi_indian_states_district"
+    }
+  }
+}
