@@ -1,11 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Combobox, ComboboxOption } from '@strapi/design-system/Combobox';
-import { Stack } from '@strapi/design-system/Stack';
-import { Field, FieldLabel, FieldError, FieldHint } from '@strapi/design-system/Field';
 import restaurantRequests from '../../api/restaurant';
 import { sharedVariable } from '../../../../../todo/admin/src/components/subCategory/subCategory';
-import { Box, Flex, MultiSelect, MultiSelectOption, SingleSelect, SingleSelectOption } from '@strapi/design-system';
+import { SingleSelect, SingleSelectOption, Field, FieldLabel, FieldError, FieldHint, Stack } from '@strapi/design-system';
 
 const RestaurantForm = ({ value,
     onChange,
@@ -29,21 +26,11 @@ const RestaurantForm = ({ value,
         await fetchCategories();
     }, []);
 
-    const [category, setCategory] = useState();
-    const [subcategory, setSubcategory] = useState(value);
-
-    let mappedResults;
-
     const onChangeHandler = (data) => {
-        console.log("inside onChangehandler")
-        console.log("data is", data)
-        console.log("value is", value)
-        console.log("value is", categoriesList)
 
         const mappedResults = categoriesList.reduce((accumulator, cat) => {
             if (cat.Name == data) {
                 const subcatNames = cat.sub_categories.map(subcat => subcat.Name);
-                console.log(subcatNames)
                 return accumulator.concat(subcatNames);
             } else {
                 return accumulator;
@@ -51,7 +38,6 @@ const RestaurantForm = ({ value,
         }, []);
 
         sharedVariable.setValue(mappedResults);
-        console.log("mappedResults", mappedResults)
 
     }
     return (

@@ -15,7 +15,7 @@
     "Name": {
       "type": "string"
     },
-    "a": {
+    "sub_category": {
       "type": "customField",
       "options": [
         "asa",
