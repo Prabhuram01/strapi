@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "web_stories",
+  "info": {
+    "singularName": "web-story",
+    "pluralName": "web-stories",
+    "displayName": "WebStory"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "URI": {
+      "type": "string"
+    },
+    "Category": {
+      "type": "string"
+    },
+    "StoryId": {
+      "type": "string"
+    },
+    "Keywords": {
+      "type": "text"
+    },
+    "Description": {
+      "type": "text"
+    }
+  }
+}

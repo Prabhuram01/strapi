@@ -57,12 +57,7 @@ const HomePage = () => {
     console.log(response);
     if (response.status === 200) {
       alert("success");
-      // reset the form
-      // event.target.name.value = "";
-      // event.target.email.value = "";
-      // event.target.message.value = "";
     } else {
-      // console.log("Error sending message");
       alert("oops");
     }
   };

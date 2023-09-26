@@ -9,12 +9,13 @@ const name = pluginPkg.strapi.name;
 
 export default {
   register(app) {
+    // Commented to Hide the Icon in side Navbar
     app.addMenuLink({
       to: `/plugins/${pluginId}`,
       icon: PluginIcon,
       intlLabel: {
         id: `${pluginId}.plugin.name`,
-        defaultMessage: name,
+        defaultMessage: 'Web Stories',
       },
       Component: async () => {
         const component = await import(/* webpackChunkName: "[request]" */ './pages/App');
@@ -42,11 +43,11 @@ export default {
       type: "string", // the color will be stored as a string
       intlLabel: {
         id: "restaurant.dropdown.label",
-        defaultMessage: "new test field",
+        defaultMessage: "Category",
       },
       intlDescription: {
         id: "restaurant.dropdown.description",
-        defaultMessage: "Relation between Category & SubCategory",
+        defaultMessage: "Custom Field for Category",
       },
       icon: Restaurant, // don't forget to create/import your icon component 
       components: {

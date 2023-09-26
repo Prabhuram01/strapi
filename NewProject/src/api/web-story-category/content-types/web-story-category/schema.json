@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "web_story_categories",
+  "info": {
+    "singularName": "web-story-category",
+    "pluralName": "web-story-categories",
+    "displayName": "WebStoryCategory"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Category": {
+      "type": "string"
+    }
+  }
+}

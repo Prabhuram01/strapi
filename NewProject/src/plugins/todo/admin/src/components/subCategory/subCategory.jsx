@@ -20,14 +20,14 @@ const RestaurantForm = ({ value,
     placeholder,
     disabled }) => {
 
-    const [selectedCat, setSelectedCat] = useState(sharedVariable.value)
+    const [selectedSubCat, setSelectedSubCat] = useState(sharedVariable.value)
     const [showDropdown, setShowDropdown] = useState(false)
     const [showTag, setShowTag] = useState(false)
     const [showDummyTag, setShowDummyTag] = useState(sharedVariable.value.length === 0)
     const handleRefresh = () => {
         setShowDropdown(!showDropdown)
         // console.log("inside handler")
-        setSelectedCat(sharedVariable.value)
+        setSelectedSubCat(sharedVariable.value)
     };
 
     const handleCheck = () => {
@@ -50,20 +50,19 @@ const RestaurantForm = ({ value,
                 <FieldLabel action={labelAction}>
                     Sub-Category
                 </FieldLabel>
-                {!value && showDummyTag && <div onClick={handleCheck}><Button variant='tertiary' disabled={handleCheck} size='L' endIcon={< Plus />}>Add Sub-Category</Button></div>}
+                {!value && showDummyTag && <div onClick={handleCheck}><Button variant='tertiary' disabled={handleCheck} size='L' endIcon={<Plus small></Plus>}>Add Sub-Category</Button></div>}
                 {(value || showTag) && !showDropdown && <Button variant='tertiary' onClick={() => { handleRefresh(); setShowTag(!showTag); setShowDummyTag() }} size='L'>{value}</Button>}
                 {/* {!value && !showDropdown && !showDummyTag && <Tag onClick={handleRefresh}>Add Sub-Category</Tag>} */}
                 {showDropdown &&
                     <SingleSelect
-                        placeholder="Select a Category"
+                        placeholder="Select Sub-Category"
                         aria-disabled={disabled}
                         disabled={disabled}
                         value={value}
                         onChange={data => { onChange({ target: { name, value: data, type: attribute.type } }); handleRefresh; setShowTag(!showTag); setShowDropdown(!showDropdown) }}
                     >
-
-                        {selectedCat.map((category) => (
-                            <SingleSelectOption value={category} key={category}>{category}</SingleSelectOption>
+                        {selectedSubCat.map((subCategory) => (
+                            <SingleSelectOption value={subCategory} key={subCategory}>{subCategory}</SingleSelectOption>
                         ))}
 
                     </SingleSelect>}

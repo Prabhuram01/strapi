@@ -9,26 +9,27 @@ const name = pluginPkg.strapi.name;
 
 export default {
   register(app) {
-    app.addMenuLink({
-      to: `/plugins/${pluginId}`,
-      icon: PluginIcon,
-      intlLabel: {
-        id: `${pluginId}.plugin.name`,
-        defaultMessage: name,
-      },
-      Component: async () => {
-        const component = await import(/* webpackChunkName: "[request]" */ './pages/App');
+    // Commented to Hide the Icon in side Navbar
+    // app.addMenuLink({
+    //   to: `/plugins/${pluginId}`,
+    //   icon: PluginIcon,
+    //   intlLabel: {
+    //     id: `${pluginId}.plugin.name`,
+    //     defaultMessage: name,
+    //   },
+    //   Component: async () => {
+    //     const component = await import(/* webpackChunkName: "[request]" */ './pages/App');
 
-        return component;
-      },
-      permissions: [
-        // Uncomment to set the permissions of the plugin here
-        // {
-        //   action: '', // the action name should be plugin::plugin-name.actionType
-        //   subject: null,
-        // },
-      ],
-    });
+    //     return component;
+    //   },
+    //   permissions: [
+    //     // Uncomment to set the permissions of the plugin here
+    //     // {
+    //     //   action: '', // the action name should be plugin::plugin-name.actionType
+    //     //   subject: null,
+    //     // },
+    //   ],
+    // });
     app.registerPlugin({
       id: pluginId,
       initializer: Initializer,
@@ -42,11 +43,11 @@ export default {
       type: "string", // the color will be stored as a string
       intlLabel: {
         id: "subCategory.dropdown.label",
-        defaultMessage: "subCategory",
+        defaultMessage: "Sub-Category",
       },
       intlDescription: {
         id: "subCategory.dropdown.description",
-        defaultMessage: "Relation between Category & SubCategory",
+        defaultMessage: "Custom Field for Sub-Category",
       },
       icon: Restaurant, // don't forget to create/import your icon component 
       components: {

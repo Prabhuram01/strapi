@@ -5,23 +5,18 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
-import pluginId from '../../pluginId';
-import { BaseHeaderLayout, Box,HeaderLayout, Breadcrumbs, Crumb } from 
-'@strapi/design-system';
+import { Box } from
+  '@strapi/design-system';
 import InputForm from '../../components/InputForm/InputForm';
+import { Typography } from '@strapi/design-system';
 
 const HomePage = () => {
   return (
     <>
-      <Box background="neutral100">
-        <BaseHeaderLayout title="Audit Logs Plugin" subtitle={<Breadcrumbs label="folders">
-          <Crumb>Plugin For User Analytics</Crumb>
-        </Breadcrumbs>} as="h2" />
+      <Box background="neutral100" paddingTop={6} paddingLeft={7}>
+        <Typography variant="alpha">Audit Logs</Typography>
       </Box>
-      <div>
-        <InputForm />
-      </div>
+      <InputForm />
     </>
 
   );
