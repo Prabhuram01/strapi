@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cjl1l2_tesings",
+  "info": {
+    "singularName": "cjl1l2-tesing",
+    "pluralName": "cjl1l2-tesings",
+    "displayName": "cjl1l2 tesing",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "cjPrimaryCategory": {
+      "type": "customField",
+      "customField": "plugin::cj-primary-category.cjCategory"
+    },
+    "PrimarySubCategory": {
+      "type": "customField",
+      "customField": "plugin::primary-sub-category.subCategory"
+    }
+  }
+}

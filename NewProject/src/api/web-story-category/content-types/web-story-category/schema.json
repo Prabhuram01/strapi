@@ -4,7 +4,8 @@
   "info": {
     "singularName": "web-story-category",
     "pluralName": "web-story-categories",
-    "displayName": "WebStoryCategory"
+    "displayName": "WebStory Category",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

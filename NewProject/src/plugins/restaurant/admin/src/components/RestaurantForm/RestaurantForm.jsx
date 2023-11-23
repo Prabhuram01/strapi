@@ -2,7 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import restaurantRequests from '../../api/restaurant';
 import { sharedVariable } from '../../../../../todo/admin/src/components/subCategory/subCategory';
-import { SingleSelect, SingleSelectOption, Field, FieldLabel, FieldError, FieldHint, Stack } from '@strapi/design-system';
+import { SingleSelect, SingleSelectOption, Combobox, ComboboxOption, Field, FieldLabel, FieldError, FieldHint, Stack } from '@strapi/design-system';
+
 
 const RestaurantForm = ({ value,
     onChange,
@@ -22,8 +23,8 @@ const RestaurantForm = ({ value,
 
     const categoryNames = categoriesList.map(cat => cat.Name)
 
-    useEffect(async () => {
-        await fetchCategories();
+    useEffect(() => {
+        fetchCategories();
     }, []);
 
     const onChangeHandler = (data) => {
@@ -53,7 +54,7 @@ const RestaurantForm = ({ value,
                     Category
                 </FieldLabel>
                 <div onLoad={onChangeHandler(value)} >
-                    <SingleSelect
+                    <Combobox
                         placeholder="Select a Category"
                         aria-disabled={disabled}
                         disabled={disabled}
@@ -61,9 +62,9 @@ const RestaurantForm = ({ value,
                         onChange={(data) => { onChange({ target: { name, value: data, type: attribute.type } }); onChangeHandler(data); }}
                     >
                         {categoryNames.map((category) => (
-                            <SingleSelectOption value={category} key={category}>{category}</SingleSelectOption>
+                            <ComboboxOption value={category} key={category}>{category}</ComboboxOption>
                         ))}
-                    </SingleSelect>
+                    </Combobox>
                 </div>
                 <FieldHint />
                 <FieldError />

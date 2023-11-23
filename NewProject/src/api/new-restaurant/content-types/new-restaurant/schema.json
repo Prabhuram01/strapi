@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "new_restaurants",
+  "info": {
+    "singularName": "new-restaurant",
+    "pluralName": "new-restaurants",
+    "displayName": "new restaurant",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category",
+      "mappedBy": "new_restaurant"
+    },
+    "asdf": {
+      "type": "component",
+      "repeatable": true,
+      "component": "test.inside-test"
+    }
+  }
+}

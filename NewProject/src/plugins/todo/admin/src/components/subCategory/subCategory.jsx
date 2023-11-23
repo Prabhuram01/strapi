@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Button, SingleSelect, SingleSelectOption, Field, FieldLabel, FieldError, FieldHint, Stack, Tag } from '@strapi/design-system';
 import { Plus } from '@strapi/icons';
+import { Combobox, ComboboxOption } from '@strapi/design-system';
 
 export const sharedVariable = {
     value: [],
@@ -54,7 +55,7 @@ const RestaurantForm = ({ value,
                 {(value || showTag) && !showDropdown && <Button variant='tertiary' onClick={() => { handleRefresh(); setShowTag(!showTag); setShowDummyTag() }} size='L'>{value}</Button>}
                 {/* {!value && !showDropdown && !showDummyTag && <Tag onClick={handleRefresh}>Add Sub-Category</Tag>} */}
                 {showDropdown &&
-                    <SingleSelect
+                    <Combobox
                         placeholder="Select Sub-Category"
                         aria-disabled={disabled}
                         disabled={disabled}
@@ -62,10 +63,10 @@ const RestaurantForm = ({ value,
                         onChange={data => { onChange({ target: { name, value: data, type: attribute.type } }); handleRefresh; setShowTag(!showTag); setShowDropdown(!showDropdown) }}
                     >
                         {selectedSubCat.map((subCategory) => (
-                            <SingleSelectOption value={subCategory} key={subCategory}>{subCategory}</SingleSelectOption>
+                            <ComboboxOption value={subCategory} key={subCategory}>{subCategory}</ComboboxOption>
                         ))}
 
-                    </SingleSelect>}
+                    </Combobox>}
                 <FieldHint />
                 <FieldError />
             </Stack>

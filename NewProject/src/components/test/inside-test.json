@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_test_inside_tests",
+  "info": {
+    "displayName": "inside-test",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

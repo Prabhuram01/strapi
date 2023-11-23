@@ -10,26 +10,27 @@ const name = pluginPkg.strapi.name;
 export default {
   register(app) {
     // Commented to Hide the Icon in side Navbar
-    app.addMenuLink({
-      to: `/plugins/${pluginId}`,
-      icon: PluginIcon,
-      intlLabel: {
-        id: `${pluginId}.plugin.name`,
-        defaultMessage: 'Web Stories',
-      },
-      Component: async () => {
-        const component = await import(/* webpackChunkName: "[request]" */ './pages/App');
+    // app.addMenuLink(
+    //   {
+    //   to: `/plugins/${pluginId}`,
+    //   icon: PluginIcon,
+    //   intlLabel: {
+    //     id: `${pluginId}.plugin.name`,
+    //     defaultMessage: 'Web Stories',
+    //   },
+    //   Component: async () => {
+    //     const component = await import(/* webpackChunkName: "[request]" */ './pages/App');
 
-        return component;
-      },
-      permissions: [
-        // Uncomment to set the permissions of the plugin here
-        // {
-        //   action: '', // the action name should be plugin::plugin-name.actionType
-        //   subject: null,
-        // },
-      ],
-    });
+    //     return component;
+    //   },
+    //   permissions: [
+    //     // Uncomment to set the permissions of the plugin here
+    //     // {
+    //     //   action: '', // the action name should be plugin::plugin-name.actionType
+    //     //   subject: null,
+    //     // },
+    //   ],
+    // });
     app.registerPlugin({
       id: pluginId,
       initializer: Initializer,

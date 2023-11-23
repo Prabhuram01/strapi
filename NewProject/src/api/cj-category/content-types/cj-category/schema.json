@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cj_categories",
+  "info": {
+    "singularName": "cj-category",
+    "pluralName": "cj-categories",
+    "displayName": "cj category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "cj_sub_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::cj-sub-category.cj-sub-category",
+      "mappedBy": "sub_categories"
+    }
+  }
+}

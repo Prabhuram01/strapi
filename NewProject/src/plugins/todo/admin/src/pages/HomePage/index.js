@@ -13,59 +13,59 @@ import restaurantRequests from '../../api/restaurant';
 
 const HomePage = () => {
 
-  const [name, setName] = React.useState("");
-  const [desc, setDesc] = React.useState("");
-  const [selectedcategory, setselectedcategory] = useState("")
-  const [selectedSubcategory, setselectedSubcategory] = useState([])
-  const abc = 0
+  // const [name, setName] = React.useState("");
+  // const [desc, setDesc] = React.useState("");
+  // const [selectedcategory, setselectedcategory] = useState("")
+  // const [selectedSubcategory, setselectedSubcategory] = useState([])
+  // const abc = 0
 
-  const categories = ["select a category", "Indian Food", "Chinese Food"]
-  const subcategories = {
-    'Indian Food': ["Biryani", "Butter Nuan"],
-    'Chinese Food': ["Frog fry"],
-    'select a category': ["select a valid category"]
-  }
-  const [categoriesList, setCategoriesList] = useState([]);
-  const fetchCategories = async () => {
-    const allcategories = await restaurantRequests.getCateg();
-    setCategoriesList(allcategories);
-    console.log("categoriesList in fetchCategories()");
-  };
+  // const categories = ["select a category", "Indian Food", "Chinese Food"]
+  // const subcategories = {
+  //   'Indian Food': ["Biryani", "Butter Nuan"],
+  //   'Chinese Food': ["Frog fry"],
+  //   'select a category': ["select a valid category"]
+  // }
+  // const [categoriesList, setCategoriesList] = useState([]);
+  // const fetchCategories = async () => {
+  //   const allcategories = await restaurantRequests.getCateg();
+  //   setCategoriesList(allcategories);
+  //   console.log("categoriesList in fetchCategories()");
+  // };
 
-  useEffect(async () => {
-    await fetchCategories();
-  }, [])
+  // useEffect(async () => {
+  //   await fetchCategories();
+  // }, [])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // setLoading(true);
-    // await fetchData();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   // setLoading(true);
+  //   // await fetchData();
 
-    const data = {
-      Name: String(e.target.name.value),
-      Desc: String(e.target.desc.value),
-      category: selectedcategory,
-      sub_categories: selectedSubcategory[0],
-    }
+  //   const data = {
+  //     Name: String(e.target.name.value),
+  //     Desc: String(e.target.desc.value),
+  //     category: selectedcategory,
+  //     sub_categories: selectedSubcategory[0],
+  //   }
 
-    console.log("data");
-    console.log(data);
+  //   console.log("data");
+  //   console.log(data);
 
-    const response = await restaurantRequests.addRestaurant(data);
+  //   const response = await restaurantRequests.addRestaurant(data);
 
-    console.log("Response data");
-    console.log(response);
-    if (response.status === 200) {
-      alert("success");
-    } else {
-      alert("oops");
-    }
-  };
+  //   console.log("Response data");
+  //   console.log(response);
+  //   if (response.status === 200) {
+  //     alert("success");
+  //   } else {
+  //     alert("oops");
+  //   }
+  // };
 
 
   return (
     <Layout>
-      <BaseHeaderLayout
+      {/* <BaseHeaderLayout
         title="Restaurant"
         subtitle="This plugin was created for testing of restaurant"
         as="h2" />
@@ -109,7 +109,7 @@ const HomePage = () => {
         </form>
 
 
-      </ContentLayout>
+      </ContentLayout> */}
 
     </Layout>
   );

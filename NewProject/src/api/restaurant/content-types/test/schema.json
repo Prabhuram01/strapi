@@ -14,6 +14,14 @@
     "Name": {
       "type": "string",
       "unique": true
+    },
+    "primaryCategory": {
+      "type": "customField",
+      "customField": "plugin::primary-category.category"
+    },
+    "PrimarySubCategory": {
+      "type": "customField",
+      "customField": "plugin::primary-sub-category.subCategory"
     }
   }
 }

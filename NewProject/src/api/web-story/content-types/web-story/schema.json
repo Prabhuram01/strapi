@@ -4,7 +4,8 @@
   "info": {
     "singularName": "web-story",
     "pluralName": "web-stories",
-    "displayName": "WebStory"
+    "displayName": "WebStory Record",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -28,6 +29,21 @@
     },
     "Description": {
       "type": "text"
+    },
+    "authorUsername": {
+      "type": "string"
+    },
+    "AuthorEmail": {
+      "type": "email"
+    },
+    "Thumbnail": {
+      "type": "string"
+    },
+    "Site": {
+      "type": "string"
+    },
+    "headline": {
+      "type": "string"
     }
   }
 }

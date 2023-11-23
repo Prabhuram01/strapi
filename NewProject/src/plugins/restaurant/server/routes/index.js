@@ -5,7 +5,7 @@ module.exports = [
     handler: 'myController.index',
     config: {
       policies: [],
-      auth:false,
+      auth: false,
     },
   },
   {
@@ -14,16 +14,16 @@ module.exports = [
     handler: 'restaurantController.getCategories',
     config: {
       policies: [],
-      auth:false,
+      auth: false,
     },
   },
-  {
-    method: 'POST',
-    path: '/create',
-    handler: 'restaurantController.createRestaurant',
-    config: {
-      policies: [],
-      auth:false,
-    },
-  },
+  // {
+  //   method: 'POST',
+  //   path: '/create',
+  //   handler: 'restaurantController.createRestaurant',
+  //   config: {
+  //     policies: [],
+  //     auth:false,
+  //   },
+  // },
 ];
